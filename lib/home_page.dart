@@ -26,7 +26,14 @@ class _MyHomePageState extends State<MyHomePage> {
     'Oil',
     'Currency'
   ]; //This is the array for dropdown
-
+  String dropSells =
+      'Crypto sells'; //This is the selection value. It is also present in my array.
+  final dropdownSellsList = [
+    'Crypto sells',
+    'Gold sells',
+    'Oil sells',
+    'Currency sells'
+  ]; //This is the array for dropdown
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   child: Column(children: <Widget>[
                     Expanded(
-                        flex: 3,
+                        flex: 1,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Container(
@@ -52,9 +59,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                     Border.all(color: Colors.white, width: 0.2),
                                 borderRadius: const BorderRadius.all(
                                     Radius.circular(20))),
-                            height: 400,
-                            width: 500,
-                            child: _dropBigList(),
+                            height: 200,
+                            width: MediaQuery.of(context).size.width,
+                            child: _dropList(),
                           ),
                         )),
                     Expanded(
@@ -74,9 +81,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                           color: Colors.white, width: 0.2),
                                       borderRadius: const BorderRadius.all(
                                           Radius.circular(20))),
-                                  height: 200,
-                                  width: 200,
-                                  child: _dropList(),
+                                  height: 100,
+                                  width: 100,
+                                  child: _dropSellsList(),
                                 ),
                               ),
                             ),
@@ -93,8 +100,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                           color: Colors.white, width: 0.2),
                                       borderRadius: const BorderRadius.all(
                                           Radius.circular(20))),
-                                  height: 200,
-                                  width: 200,
+                                  height: 100,
+                                  width: 100,
                                   child: IconButton(
                                     onPressed: () {
                                       Navigator.push(
@@ -115,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         )),
                   ]))),
           Expanded(
-              flex: 2,
+              flex: 3,
               child: Container(
                   child: Column(children: [
                 Expanded(
@@ -182,11 +189,11 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  _dropList() {
+  _dropSellsList() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
       child: DropdownButton<String>(
-        value: dropValue,
+        value: dropSells,
         dropdownColor: Colors.blue,
         icon: const Icon(Icons.expand_more),
         elevation: 16,
@@ -196,10 +203,10 @@ class _MyHomePageState extends State<MyHomePage> {
         onChanged: (String? value) {
           // This is called when the user selects an item.
           setState(() {
-            dropValue = value!;
+            dropSells = value!;
           });
         },
-        items: dropdownList.map<DropdownMenuItem<String>>((String value) {
+        items: dropdownSellsList.map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(
@@ -213,7 +220,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  _dropBigList() {
+  _dropList() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
       child: DropdownButton<String>(
